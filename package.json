@@ -5,12 +5,15 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-   "dev": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "backend",
     "javascript"
   ],
   "author": "Shreya Pandey",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^3.3.3"
+  }
 }
