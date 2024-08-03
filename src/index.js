@@ -1,28 +1,32 @@
-// require("dotenv").config({path: "./env"});
 
-//STEP 3: commented out the code before and  imported the dotenv file (shouldve been the first step)
-
-
-//STEP 4: Changed the syntax to use an import statmenet instead of require
 import dotenv from "dotenv";
-
-
-//STEP 5 : Commented out the unused imports
-
-// import mongoose from "mongoose";
-// import {DB_NAME} from "./constants.js";
-
-
 import connectDB from "./db/index.js";
+import {app} from "./app.js";
 
 
 
-//STEP 6: Added the dotenv config function to the index.js file and configured the path to the env file
+
 dotenv.config({path: "./.env"});
 
+connectDB()
+.then(()=>{
 
+    //putting a middleware code before the app.listen just in case 
+    app.on("error", (error) => {
+        console.log("Error", error);
+        throw error;
+    })
 
-connectDB();
+    app.listen(process.env.PORT || 8000, ()=>{
+        console.log(`Server is running on port ${process.env.PORT}`);
+    })
+
+})
+.catch((err) => {
+
+    console.log("MongoDb Connection failed (index)", err);
+  
+})
 
 
 
