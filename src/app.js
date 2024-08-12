@@ -27,6 +27,41 @@ app.use(express.static("public"))
 //STEP 5: this line of code will allow us to parse cookies from the request headers
 app.use(cookieParser())
 
+
+// ***************************************************************************************//
+
+
+//STEP 6: Routes
+
+import userRouter from "./routes/user.routes.js"
+
+
+
+
+
+
+
+
+//STEP 7 : Route declaration
+
+app.use("/api/v1/users",userRouter)
+//we wont use app.get because we have seprated routes in another file , so now we'll use a middleware , ie app.use, which will pass the control to the userRoutes file.
+//whatever we write in that file will be executed when the user hits the /users endpoint. Meanwgile "/users" will be appended to the endpoint of the routes in the userRoutes file (the url will be /users/register, /users/login etc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export {app}
 
 

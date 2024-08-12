@@ -59,7 +59,7 @@ const uploadOnCloudinary = async (fileParameter) => {
 export default uploadOnCloudinary;
 
 
-
+//command to create a new file in the terminal is touch filename.js
 
     
     

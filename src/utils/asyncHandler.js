@@ -7,21 +7,21 @@
 
 //STEP 2 : Implementing the asyncHandler function
 
-const asyncHnadler = (fn) => async(req,res,next) =>
-{
-    try
-    {
-        await fn(req,res,next) //this will execute the function passed to the asyncHandler
-    }
-    catch(error)
-    {
-        res.status(error.code || 500).json({
+// const asyncHnadler = (fn) => async(req,res,next) =>
+// {
+//     try
+//     {
+//         await fn(req,res,next) //this will execute the function passed to the asyncHandler
+//     }
+//     catch(error)
+//     {
+//         res.status(error.code || 500).json({
 
-            success:false,
-            message:error.message || "Something went wrong"
-        })
-    }
-}   
+//             success:false,
+//             message:error.message || "Something went wrong"
+//         })
+//     }
+// }   
 
 
 
@@ -33,10 +33,11 @@ const asyncHnadler = (fn) => async(req,res,next) =>
 
 //ANOTHER SYNTAX USED IN PRODUCTION GRADE IS PROMISE BASED SYNTAX:
 
-// const asyncHandler = (requestHandler) => {(req,res,next) => {
-//     Promise.resolve(requestHandler(req,res,next)).catch((err)=> next(err))
-// }
-// }
+const asyncHandler = (requestHandler) => {
+    return (req,res,next) => {
+    Promise.resolve(requestHandler(req,res,next)).catch((err)=> next(err))
+}
+}
 
 
 export {asyncHandler}
