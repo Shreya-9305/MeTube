@@ -91,6 +91,8 @@ userSchema.methods.isPasswordCorrect = async function(password) {
 
 //STEP 4: Creating other methods for acess token and refresh token
 //BOTH ARE JWT TOKENS
+// jwt.sign method is used to generate the token
+//3 parameters: payload, secret key, options
 
 userSchema.methods.generateAccessToken = function() {
     return jwt.sign(
@@ -110,10 +112,16 @@ userSchema.methods.generateAccessToken = function() {
 }
 //its a fast function so we do not need to use async await
 
+
+
+
+// **********************************************//
+
 userSchema.methods.generateAccessToken = function() {
     return jwt.sign(
         {
          _id: this._id,
+         //we only pass id as payload in refresh token
          },
          process.env.REFRESH_TOKEN_SECRET,
             {
